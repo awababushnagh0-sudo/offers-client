@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 
+import '../icon/s_icon.dart';
 import '../illustration/s_illustration_renderer.dart';
 import '../list_tile/s_list_tile_renderer.dart';
 
@@ -26,8 +27,45 @@ class ChoiceSheetSpec<T> {
   final Illustration? illustration;
 }
 
+/// One of the ways forward an [ActionSheetSpec] offers.
+@immutable
+class SheetAction<T> {
+  const SheetAction({
+    required this.value,
+    required this.icon,
+    required this.label,
+    this.hint,
+  });
+
+  final T value;
+  final SIcons icon;
+  final String label;
+
+  /// What it leads to, under [label].
+  final String? hint;
+}
+
+@immutable
+class ActionSheetSpec<T> {
+  const ActionSheetSpec({
+    required this.title,
+    required this.actions,
+    this.subtitle,
+  });
+
+  final String title;
+  final List<SheetAction<T>> actions;
+
+  /// A line under [title].
+  final String? subtitle;
+}
+
 abstract interface class SheetRenderer {
   /// Shows the choices from the bottom of the screen. Completes with the
   /// one tapped, or null when the sheet is closed without a choice.
   Future<T?> choose<T>(BuildContext context, ChoiceSheetSpec<T> spec);
+
+  /// Shows the ways forward from the bottom of the screen, as big rows.
+  /// Completes with the one tapped, or null when the sheet is closed.
+  Future<T?> actions<T>(BuildContext context, ActionSheetSpec<T> spec);
 }

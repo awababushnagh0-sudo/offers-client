@@ -29,4 +29,18 @@ abstract final class SSheet {
       illustration: illustration,
     ),
   );
+
+  /// Asks which way to go on ("from a product, or something new?"), each
+  /// way a big row with its icon, [SheetAction.label] and
+  /// [SheetAction.hint]. Completes with the one tapped, or null when the
+  /// sheet is closed.
+  static Future<T?> actions<T>(
+    BuildContext context, {
+    required String title,
+    required List<SheetAction<T>> actions,
+    String? subtitle,
+  }) => StellarKit.of(context).sheet.actions(
+    context,
+    ActionSheetSpec(title: title, actions: actions, subtitle: subtitle),
+  );
 }

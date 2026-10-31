@@ -11,7 +11,6 @@ import 's_photo_renderer.dart';
 // As wide as the page and nearly as tall as the photo on the item's page,
 // so the owner sees it about as customers will.
 const _fieldHeight = 200.0;
-const _cameraSize = 56.0;
 
 class MaterialPhotoRenderer implements PhotoRenderer {
   const MaterialPhotoRenderer();
@@ -79,8 +78,7 @@ class MaterialPhotoRenderer implements PhotoRenderer {
   }
 }
 
-/// No photo yet: a camera in a circle, what to do and what makes a good
-/// one.
+/// No photo yet: a camera, what to do and what makes a good one.
 class _Empty extends StatelessWidget {
   const _Empty({required this.label, required this.hint});
 
@@ -94,15 +92,10 @@ class _Empty extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Container(
-          width: _cameraSize,
-          height: _cameraSize,
-          decoration: BoxDecoration(color: c.surface, shape: BoxShape.circle),
-          child: Icon(
-            materialIcon(SIcons.camera),
-            size: SIconSize.md.pixels,
-            color: c.primary,
-          ),
+        Icon(
+          materialIcon(SIcons.camera),
+          size: SIconSize.lg.pixels,
+          color: c.text,
         ),
         const Gap(Space.md),
         Text(
