@@ -26,6 +26,7 @@ void main() {
       ],
       routes: [
         GoRoute(path: Routes.offers, builder: (_, _) => const OffersScreen()),
+        stubPage(Routes.quickOffer, 'quick offer page'),
         stubPage(Routes.chooseOfferProduct, 'choose product page'),
         stubPage(Routes.offer(':id'), 'offer page'),
       ],
@@ -80,12 +81,25 @@ void main() {
     expect(find.text('offer page'), findsOneWidget);
   });
 
-  testWidgets('owners post from the button over the list', (tester) async {
+  testWidgets('owners post from one of their products', (tester) async {
     await open(tester);
 
     await tester.tap(find.text('Post an offer'));
     await tester.pumpAndSettle();
+    expect(find.text("What's the offer on?"), findsOneWidget);
+    await tester.tap(find.text('From my products'));
+    await tester.pumpAndSettle();
     expect(find.text('choose product page'), findsOneWidget);
+  });
+
+  testWidgets('owners post something new', (tester) async {
+    await open(tester);
+
+    await tester.tap(find.text('Post an offer'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Something new'));
+    await tester.pumpAndSettle();
+    expect(find.text('quick offer page'), findsOneWidget);
   });
 
   testWidgets('owners start posting from the first empty list', (tester) async {
@@ -93,6 +107,8 @@ void main() {
 
     expect(find.text('No offers yet'), findsOneWidget);
     await tester.tap(find.text('Post an offer'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('From my products'));
     await tester.pumpAndSettle();
     expect(find.text('choose product page'), findsOneWidget);
   });

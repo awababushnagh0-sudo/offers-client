@@ -355,6 +355,11 @@ class PartnerLocalizationsAr extends PartnerLocalizations {
   }
 
   @override
+  String ofTotal(int total) {
+    return 'من $total';
+  }
+
+  @override
   String get noLimit => 'بدون حد';
 
   @override
@@ -366,10 +371,42 @@ class PartnerLocalizationsAr extends PartnerLocalizations {
   String get chooseProductTitle => 'اختر منتجًا';
 
   @override
-  String get noProductsForOffer => 'تُنشر العروض من منتجاتك. أضف منتجًا أولًا.';
+  String get noProductsForOffer =>
+      'انشر شيئًا جديدًا، ويُحفظ هنا للمرة القادمة.';
 
   @override
   String get newOfferTitle => 'عرض جديد';
+
+  @override
+  String get offerSection => 'العرض';
+
+  @override
+  String get whenSection => 'متى ينتهي';
+
+  @override
+  String get whenAndWhereSection => 'متى وأين';
+
+  @override
+  String get startOfferTitle => 'على ماذا العرض؟';
+
+  @override
+  String get fromMyProducts => 'من منتجاتي';
+
+  @override
+  String get fromMyProductsHint => 'منتج حفظته من قبل';
+
+  @override
+  String get somethingNew => 'شيء جديد';
+
+  @override
+  String get somethingNewHint => 'أضف صورته وسعره وانشره الآن';
+
+  @override
+  String get quickProductNote => 'يُحفظ في منتجاتك لتنشره مرة أخرى في ثوانٍ.';
+
+  @override
+  String get offerPostedPhotoFailed =>
+      'نُشر العرض. لم تُرفع الصورة: أضفها من صفحة المنتج.';
 
   @override
   String regularPriceIs(String price) {

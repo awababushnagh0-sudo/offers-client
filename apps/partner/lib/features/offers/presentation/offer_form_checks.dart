@@ -12,6 +12,11 @@ abstract final class OfferChecks {
 
   /// An offer price lower than [regular] ("8.000").
   static Validator<dynamic> belowRegular(String regular) =>
+      _BelowRegular(() => regular);
+
+  /// The same, against a regular price typed on the same form: nothing to
+  /// check while [regular] is null.
+  static Validator<dynamic> belowRegularOf(String? Function() regular) =>
       _BelowRegular(regular);
 
   /// An end time still to come, at most [maxDuration] away.
@@ -29,7 +34,7 @@ abstract final class OfferChecks {
 class _BelowRegular extends Validator<dynamic> {
   const _BelowRegular(this.regular);
 
-  final String regular;
+  final String? Function() regular;
 
   @override
   Map<String, dynamic>? validate(AbstractControl<dynamic> control) {
@@ -37,6 +42,8 @@ class _BelowRegular extends Validator<dynamic> {
     final price = value is String ? parsePrice(value) : null;
     // An empty or malformed price is the other checks' to report.
     if (price == null) return null;
+    final regular = this.regular();
+    if (regular == null) return null;
     return dirhamsOf(price) < dirhamsOf(regular)
         ? null
         : {OfferChecks.belowRegularKey: true};

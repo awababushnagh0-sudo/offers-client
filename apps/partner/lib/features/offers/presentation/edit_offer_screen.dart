@@ -3,9 +3,9 @@ import 'package:stellar/stellar.dart';
 
 import '../../../core/l10n/generated/partner_localizations.dart';
 import 'edit_offer_view_model.dart';
-import 'new_offer_screen.dart';
 import 'offer_form_checks.dart';
 import 'offer_view_model.dart';
+import 'widgets/offer_fields.dart';
 
 /// Changes an offer's title, description or end time.
 class EditOfferScreen extends AppView {

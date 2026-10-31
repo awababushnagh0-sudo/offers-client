@@ -26,6 +26,9 @@ abstract final class Routes {
 
   /// Posting an offer starts with its product.
   static const chooseOfferProduct = '$offers/new';
+
+  /// An offer for something new, saved as a product on the way.
+  static const quickOffer = '$chooseOfferProduct/quick';
   static String newOffer(String productId, {String? from}) =>
       '$chooseOfferProduct/$productId${from == null ? '' : '?from=$from'}';
   static String offer(String id) => '$offers/$id';

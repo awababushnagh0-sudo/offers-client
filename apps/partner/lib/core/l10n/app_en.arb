@@ -121,6 +121,14 @@
       }
     }
   },
+  "ofTotal": "of {total}",
+  "@ofTotal": {
+    "placeholders": {
+      "total": {
+        "type": "int"
+      }
+    }
+  },
   "noLimit": "No limit",
   "until": "Until {date}",
   "@until": {
@@ -131,8 +139,18 @@
     }
   },
   "chooseProductTitle": "Choose a product",
-  "noProductsForOffer": "Offers are posted from your products. Add one first.",
+  "noProductsForOffer": "Post something new, and it's saved here for next time.",
   "newOfferTitle": "New offer",
+  "offerSection": "The offer",
+  "whenSection": "When it ends",
+  "whenAndWhereSection": "When and where",
+  "startOfferTitle": "What's the offer on?",
+  "fromMyProducts": "From my products",
+  "fromMyProductsHint": "One you've saved before",
+  "somethingNew": "Something new",
+  "somethingNewHint": "Add its photo and price, and post it now",
+  "quickProductNote": "Saved to your products, to post again in seconds.",
+  "offerPostedPhotoFailed": "Offer posted. The photo didn't upload: add it from the product's page.",
   "regularPriceIs": "Regular price {price}",
   "@regularPriceIs": {
     "placeholders": {

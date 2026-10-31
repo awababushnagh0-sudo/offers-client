@@ -767,6 +767,12 @@ abstract class PartnerLocalizations {
   /// **'{left} of {total} left'**
   String piecesLeft(int left, int total);
 
+  /// No description provided for @ofTotal.
+  ///
+  /// In en, this message translates to:
+  /// **'of {total}'**
+  String ofTotal(int total);
+
   /// No description provided for @noLimit.
   ///
   /// In en, this message translates to:
@@ -788,7 +794,7 @@ abstract class PartnerLocalizations {
   /// No description provided for @noProductsForOffer.
   ///
   /// In en, this message translates to:
-  /// **'Offers are posted from your products. Add one first.'**
+  /// **'Post something new, and it\'s saved here for next time.'**
   String get noProductsForOffer;
 
   /// No description provided for @newOfferTitle.
@@ -796,6 +802,66 @@ abstract class PartnerLocalizations {
   /// In en, this message translates to:
   /// **'New offer'**
   String get newOfferTitle;
+
+  /// No description provided for @offerSection.
+  ///
+  /// In en, this message translates to:
+  /// **'The offer'**
+  String get offerSection;
+
+  /// No description provided for @whenSection.
+  ///
+  /// In en, this message translates to:
+  /// **'When it ends'**
+  String get whenSection;
+
+  /// No description provided for @whenAndWhereSection.
+  ///
+  /// In en, this message translates to:
+  /// **'When and where'**
+  String get whenAndWhereSection;
+
+  /// No description provided for @startOfferTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What\'s the offer on?'**
+  String get startOfferTitle;
+
+  /// No description provided for @fromMyProducts.
+  ///
+  /// In en, this message translates to:
+  /// **'From my products'**
+  String get fromMyProducts;
+
+  /// No description provided for @fromMyProductsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'One you\'ve saved before'**
+  String get fromMyProductsHint;
+
+  /// No description provided for @somethingNew.
+  ///
+  /// In en, this message translates to:
+  /// **'Something new'**
+  String get somethingNew;
+
+  /// No description provided for @somethingNewHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Add its photo and price, and post it now'**
+  String get somethingNewHint;
+
+  /// No description provided for @quickProductNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved to your products, to post again in seconds.'**
+  String get quickProductNote;
+
+  /// No description provided for @offerPostedPhotoFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Offer posted. The photo didn\'t upload: add it from the product\'s page.'**
+  String get offerPostedPhotoFailed;
 
   /// No description provided for @regularPriceIs.
   ///

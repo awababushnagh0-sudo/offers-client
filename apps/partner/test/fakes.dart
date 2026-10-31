@@ -272,6 +272,9 @@ class FakeOfferRepository implements OfferRepository {
   final updated = <(String, OfferChanges)>[];
   final actions = <(String, String)>[];
 
+  /// The next create fails with this, once.
+  AppFailure? failNextCreate;
+
   @override
   Future<Result<PageResult<Offer>>> list(
     String storeId, {
@@ -293,6 +296,10 @@ class FakeOfferRepository implements OfferRepository {
 
   @override
   Future<Result<Offer>> create(String storeId, NewOffer newOffer) async {
+    if (failNextCreate case final failure?) {
+      failNextCreate = null;
+      return Err(failure);
+    }
     created.add(newOffer);
     final posted = offer('posted', productId: newOffer.productId);
     offers.add(posted);

@@ -73,9 +73,9 @@ class ChooseOfferProductScreen extends AppView {
                     illustration: PartnerIllustrations.noProducts,
                     title: s.noProductsTitle,
                     message: s.noProductsForOffer,
-                    actionLabel: s.addProduct,
+                    actionLabel: s.somethingNew,
                     actionIcon: SIcons.add,
-                    onAction: () => context.push(Routes.newProduct),
+                    onAction: () => context.pushReplacement(Routes.quickOffer),
                   );
                 }
                 return SPagedList(

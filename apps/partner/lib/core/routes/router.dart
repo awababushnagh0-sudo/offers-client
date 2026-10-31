@@ -13,6 +13,7 @@ import '../../features/offers/presentation/edit_offer_screen.dart';
 import '../../features/offers/presentation/new_offer_screen.dart';
 import '../../features/offers/presentation/offer_screen.dart';
 import '../../features/offers/presentation/offers_screen.dart';
+import '../../features/offers/presentation/quick_offer_screen.dart';
 import '../../features/products/presentation/product_form_screen.dart';
 import '../../features/products/presentation/product_screen.dart';
 import '../../features/products/presentation/products_screen.dart';
@@ -99,6 +100,11 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: Routes.chooseOfferProduct,
         builder: (_, _) => const ChooseOfferProductScreen(),
+      ),
+      // Before the product's, so "quick" isn't taken for an id.
+      GoRoute(
+        path: Routes.quickOffer,
+        builder: (_, _) => const QuickOfferScreen(),
       ),
       GoRoute(
         path: Routes.newOffer(':productId'),

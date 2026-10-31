@@ -8,6 +8,7 @@ import '../../store/domain/current_store.dart';
 import '../domain/offer.dart';
 import 'offers_view_model.dart';
 import 'widgets/offer_card.dart';
+import 'widgets/start_offer.dart';
 
 /// The Offers tab: everyone in the store sees the offers; owners post them.
 class OffersScreen extends AppView {
@@ -31,7 +32,7 @@ class OffersScreen extends AppView {
           ? SButton(
               label: s.postOffer,
               icon: SIcons.add,
-              onPressed: () => context.push(Routes.chooseOfferProduct),
+              onPressed: () => startOffer(context),
             )
           : null,
       body: Column(
@@ -95,7 +96,7 @@ class _OfferList extends AppView {
             message: isOwner ? s.noOffersMessage : null,
             actionLabel: isOwner ? s.postOffer : null,
             actionIcon: SIcons.add,
-            onAction: () => context.push(Routes.chooseOfferProduct),
+            onAction: () => startOffer(context),
           );
         }
         return SPagedList(

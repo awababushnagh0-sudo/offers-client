@@ -50,7 +50,7 @@ void main() {
     ]);
     // A tall phone, so the whole form is on screen.
     tester.view
-      ..physicalSize = const Size(1200, 4000)
+      ..physicalSize = const Size(1200, 6000)
       ..devicePixelRatio = 3;
     addTearDown(tester.view.reset);
     await pumpPartnerPages(

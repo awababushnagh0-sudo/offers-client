@@ -359,6 +359,11 @@ class PartnerLocalizationsEn extends PartnerLocalizations {
   }
 
   @override
+  String ofTotal(int total) {
+    return 'of $total';
+  }
+
+  @override
   String get noLimit => 'No limit';
 
   @override
@@ -371,10 +376,42 @@ class PartnerLocalizationsEn extends PartnerLocalizations {
 
   @override
   String get noProductsForOffer =>
-      'Offers are posted from your products. Add one first.';
+      'Post something new, and it\'s saved here for next time.';
 
   @override
   String get newOfferTitle => 'New offer';
+
+  @override
+  String get offerSection => 'The offer';
+
+  @override
+  String get whenSection => 'When it ends';
+
+  @override
+  String get whenAndWhereSection => 'When and where';
+
+  @override
+  String get startOfferTitle => 'What\'s the offer on?';
+
+  @override
+  String get fromMyProducts => 'From my products';
+
+  @override
+  String get fromMyProductsHint => 'One you\'ve saved before';
+
+  @override
+  String get somethingNew => 'Something new';
+
+  @override
+  String get somethingNewHint => 'Add its photo and price, and post it now';
+
+  @override
+  String get quickProductNote =>
+      'Saved to your products, to post again in seconds.';
+
+  @override
+  String get offerPostedPhotoFailed =>
+      'Offer posted. The photo didn\'t upload: add it from the product\'s page.';
 
   @override
   String regularPriceIs(String price) {

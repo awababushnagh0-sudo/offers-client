@@ -8,6 +8,7 @@ import '../../../core/widgets/offer_tile.dart';
 import '../../../core/widgets/partner_illustrations.dart';
 import '../../../core/widgets/reservation_row.dart';
 import '../../counter/domain/claim.dart';
+import '../../offers/presentation/widgets/start_offer.dart';
 import '../../store/domain/current_store.dart';
 import 'home_view_model.dart';
 
@@ -76,7 +77,7 @@ class _HomeBody extends AppView {
             message: isOwner ? s.quietDayOwnerMessage : s.quietDayStaffMessage,
             actionLabel: isOwner ? s.postOffer : null,
             actionIcon: SIcons.add,
-            onAction: () => context.push(Routes.chooseOfferProduct),
+            onAction: () => startOffer(context),
           )
         else ...[
           _Header(
