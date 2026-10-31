@@ -12,6 +12,12 @@ enum SIcons {
   home,
   users,
   user,
+
+  /// The store's owner.
+  crown,
+
+  /// A touch of shine on something special.
+  sparkles,
   offers,
 
   /// What a store sells.

@@ -1,18 +1,16 @@
 import 'package:flutter/widgets.dart';
 
 import '../../foundation/s_kit.dart';
-import '../badge/s_badge_renderer.dart';
 import 's_profile_renderer.dart';
 
 /// The top of a profile page: a round picture ([imageUrl], a logo; else a
-/// person's outline), and beside it the [title] in big type, a [badge]
-/// beside the [subtitle] (a role and a name), and a [phone].
+/// person's outline), and beside it the [title] in big type, the [role]
+/// as a small tag beside the [subtitle] (a name), and a [phone].
 class SProfileHeader extends StatelessWidget {
   const SProfileHeader({
     required this.title,
     this.subtitle,
-    this.badge,
-    this.badgeTone = BadgeTone.success,
+    this.role,
     this.phone,
     this.imageUrl,
     super.key,
@@ -20,8 +18,7 @@ class SProfileHeader extends StatelessWidget {
 
   final String title;
   final String? subtitle;
-  final String? badge;
-  final BadgeTone badgeTone;
+  final ProfileRole? role;
 
   /// Already written for people (`formatLibyanPhone`); read left to right
   /// in Arabic too.
@@ -34,8 +31,7 @@ class SProfileHeader extends StatelessWidget {
     ProfileHeaderSpec(
       title: title,
       subtitle: subtitle,
-      badge: badge,
-      badgeTone: badgeTone,
+      role: role,
       phone: phone,
       imageUrl: imageUrl,
     ),

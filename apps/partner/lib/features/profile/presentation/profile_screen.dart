@@ -33,10 +33,13 @@ class ProfileScreen extends AppView {
               SProfileHeader(
                 title: store.storeName,
                 imageUrl: store.storeLogoUrl,
-                badge: store.isOwner ? s.ownerRole : s.staffRole,
-                badgeTone: store.isOwner
-                    ? BadgeTone.success
-                    : BadgeTone.neutral,
+                role: store.isOwner
+                    ? ProfileRole(
+                        label: s.ownerRole,
+                        icon: SIcons.crown,
+                        lead: true,
+                      )
+                    : ProfileRole(label: s.staffRole, icon: SIcons.user),
                 subtitle: user?.name,
                 phone: switch (user?.phone) {
                   final phone? => formatLibyanPhone(phone),

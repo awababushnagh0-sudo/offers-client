@@ -21,6 +21,9 @@ class StellarColors {
     required this.discountFrom,
     required this.discountTo,
     required this.onDiscount,
+    required this.brandFrom,
+    required this.brandTo,
+    required this.onBrand,
     required this.cream,
     required this.shadow,
     required this.scrim,
@@ -78,6 +81,13 @@ class StellarColors {
   final Color discountFrom;
   final Color discountTo;
   final Color onDiscount;
+
+  /// The brand's green as a small mark of its own (the owner's tag): a
+  /// gradient from [brandFrom] to [brandTo], deep in both themes, with
+  /// [onBrand] on it.
+  final Color brandFrom;
+  final Color brandTo;
+  final Color onBrand;
 
   /// The logo's background: behind the brand's pictures (the sign-in
   /// page's shop).

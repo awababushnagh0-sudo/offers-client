@@ -52,6 +52,16 @@ IconData materialIcon(SIcons icon) => switch (icon) {
     fontFamily: _f,
     fontPackage: _p,
   ), // user-round
+  SIcons.crown => const IconData(
+    0xe1d6,
+    fontFamily: _f,
+    fontPackage: _p,
+  ), // crown
+  SIcons.sparkles => const IconData(
+    0xe412,
+    fontFamily: _f,
+    fontPackage: _p,
+  ), // sparkles
   SIcons.offers => const IconData(
     0xe17f,
     fontFamily: _f,

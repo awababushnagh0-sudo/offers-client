@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 import '../../foundation/s_kit.dart';
 import '../../foundation/s_tokens.dart';
-import '../badge/s_badge_material.dart';
 import '../icon/s_icon.dart';
 import '../icon/s_icon_material.dart';
 import '../illustration/s_illustration_material.dart';
@@ -18,7 +17,7 @@ class MaterialProfileRenderer implements ProfileRenderer {
     final c = context.colors;
     final text = context.style.text;
     final subtitle = spec.subtitle;
-    final badge = spec.badge;
+    final role = spec.role;
     final phone = spec.phone;
     final url = spec.imageUrl;
     const avatar = SIllustrations.avatar;
@@ -59,18 +58,13 @@ class MaterialProfileRenderer implements ProfileRenderer {
                   color: c.text,
                 ),
               ),
-              if (badge != null || subtitle != null)
+              if (role != null || subtitle != null)
                 Wrap(
                   crossAxisAlignment: WrapCrossAlignment.center,
                   spacing: Space.sm,
                   runSpacing: Space.xs,
                   children: [
-                    if (badge != null)
-                      const MaterialBadgeRenderer().render(
-                        context,
-                        badge,
-                        spec.badgeTone,
-                      ),
+                    if (role != null) _RoleTag(role),
                     if (subtitle != null)
                       Text(
                         subtitle,
@@ -172,6 +166,78 @@ class _ShortcutRow extends StatelessWidget {
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+/// The person's role as a small pill: its icon and name. The lead's is the brand's green, a gradient with a
+/// faint sparkle in its corner; the others' a quiet gray.
+class _RoleTag extends StatelessWidget {
+  const _RoleTag(this.role);
+
+  static const _sparkleSize = 26.0;
+
+  final ProfileRole role;
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.colors;
+    final lead = role.lead;
+    final ink = lead ? c.onBrand : c.textMuted;
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(Radii.pill),
+        color: lead ? null : c.fieldFill,
+        gradient: lead
+            ? LinearGradient(
+                begin: AlignmentDirectional.topStart,
+                end: AlignmentDirectional.bottomEnd,
+                colors: [c.brandFrom, c.brandTo],
+              )
+            : null,
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(Radii.pill),
+        child: Stack(
+          children: [
+            if (lead)
+              PositionedDirectional(
+                end: -Space.xs,
+                top: -Space.xs,
+                child: Icon(
+                  materialIcon(SIcons.sparkles),
+                  size: _sparkleSize,
+                  color: c.onBrand.withValues(alpha: 0.18),
+                ),
+              ),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: Space.md,
+                vertical: Space.xxs,
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                spacing: Space.xs,
+                children: [
+                  Icon(
+                    materialIcon(role.icon),
+                    size: SIconSize.xs.pixels,
+                    color: ink,
+                  ),
+                  Text(
+                    role.label,
+                    style: TextStyle(
+                      fontSize: context.style.text.small,
+                      fontWeight: SFontWeight.bold.value,
+                      color: lead ? c.onBrand : c.text,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
