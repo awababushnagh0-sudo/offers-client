@@ -11,10 +11,8 @@ class DealTileSpec {
     required this.price,
     required this.discountPercent,
     required this.imageUrl,
-    required this.details,
-    required this.hot,
+    required this.stock,
     required this.bordered,
-    required this.trailing,
     required this.onTap,
   });
 
@@ -22,15 +20,37 @@ class DealTileSpec {
   final String price;
   final int? discountPercent;
   final String? imageUrl;
-  final String? details;
-
-  /// Shows [details] in orange: almost gone.
-  final bool hot;
+  final DealTileStock? stock;
 
   /// A card of its own, with a thin border, instead of a plain row.
   final bool bordered;
-  final Widget? trailing;
   final VoidCallback? onTap;
+}
+
+/// How much of a limited offer is left, at a tile's end.
+@immutable
+class DealTileStock {
+  const DealTileStock({
+    required this.left,
+    required this.total,
+    required this.note,
+    required this.label,
+    this.hot = false,
+  });
+
+  /// Pieces left, in big figures.
+  final int left;
+  final int total;
+
+  /// Under them: "of 10".
+  final String note;
+
+  /// The whole of it for screen readers: "3 of 10 left".
+  final String label;
+
+  /// Almost gone: the figures turn orange, so orange in a list always
+  /// means something.
+  final bool hot;
 }
 
 /// The top of an offer's page: its photo edge to edge, with round buttons

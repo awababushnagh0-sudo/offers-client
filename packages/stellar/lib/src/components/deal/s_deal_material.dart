@@ -23,7 +23,7 @@ class MaterialDealRenderer implements DealRenderer {
   Widget tile(BuildContext context, DealTileSpec spec) {
     final c = context.colors;
     final text = context.style.text;
-    final details = spec.details;
+    final stock = spec.stock;
     final row = Padding(
       padding: spec.bordered
           ? const EdgeInsets.all(Space.md)
@@ -57,23 +57,15 @@ class MaterialDealRenderer implements DealRenderer {
               crossAxisAlignment: CrossAxisAlignment.start,
               spacing: Space.xs,
               children: [
-                Row(
-                  spacing: Space.sm,
-                  children: [
-                    Expanded(
-                      child: Text(
-                        spec.title,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          fontSize: text.body,
-                          fontWeight: SFontWeight.semibold.value,
-                          color: c.text,
-                        ),
-                      ),
-                    ),
-                    ?spec.trailing,
-                  ],
+                Text(
+                  spec.title,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: text.body,
+                    fontWeight: SFontWeight.semibold.value,
+                    color: c.text,
+                  ),
                 ),
                 Text(
                   spec.price,
@@ -83,20 +75,10 @@ class MaterialDealRenderer implements DealRenderer {
                     color: c.primary,
                   ),
                 ),
-                if (details != null)
-                  Text(
-                    details,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontSize: text.small,
-                      fontWeight: spec.hot ? SFontWeight.semibold.value : null,
-                      color: spec.hot ? c.accentInk : c.textMuted,
-                    ),
-                  ),
               ],
             ),
           ),
+          if (stock != null) _StockCount(stock),
         ],
       ),
     );
@@ -720,3 +702,48 @@ LinearGradient discountGradient(StellarColors c) => LinearGradient(
   end: AlignmentDirectional.bottomEnd,
   colors: [c.discountFrom, c.discountTo],
 );
+
+/// How much is left at a tile's end: the pieces left in big figures, and
+/// "of 10" smaller under them, set off toward the end so the two read as a
+/// count, not a column; orange when almost gone.
+class _StockCount extends StatelessWidget {
+  const _StockCount(this.stock);
+
+  final DealTileStock stock;
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.colors;
+    final text = context.style.text;
+    return Semantics(
+      label: stock.label,
+      excludeSemantics: true,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            '${stock.left}',
+            style: TextStyle(
+              fontSize: text.display,
+              fontWeight: SFontWeight.bold.value,
+              height: 1,
+              color: stock.hot ? c.accentInk : c.primary,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsetsDirectional.only(start: Space.md),
+            child: Text(
+              stock.note,
+              style: TextStyle(
+                fontSize: text.small,
+                fontWeight: SFontWeight.medium.value,
+                color: c.textMuted,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

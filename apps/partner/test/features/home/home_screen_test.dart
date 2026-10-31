@@ -67,7 +67,11 @@ void main() {
     expect(find.text('Sara'), findsOneWidget);
     expect(find.text('40 min'), findsOneWidget);
     expect(find.text('Offer o1'), findsOneWidget);
-    expect(find.text('3 of 10 left'), findsOneWidget);
+    // "of 10" under the pieces left, read out whole.
+    expect(find.text('of 10'), findsOneWidget);
+    final semantics = tester.ensureSemantics();
+    expect(find.bySemanticsLabel(RegExp('3 of 10 left')), findsOneWidget);
+    semantics.dispose();
   });
 
   testWidgets('shows staff only their counter numbers', (tester) async {

@@ -5,20 +5,17 @@ import '../stat/s_stat_renderer.dart';
 import 's_deal_renderer.dart';
 
 /// An offer in a list, at a glance: its photo with the discount in the
-/// brand's orange, the title, the offer price, and a line of [details]
-/// ("3 of 10 left") that turns orange when [hot]. The rest is on the
-/// offer's page. Without [discountPercent], a product the same way, with
-/// its regular price.
+/// brand's orange, the title, the offer price, and at its end how much is
+/// left ([stock]). The rest is on the offer's page. Without
+/// [discountPercent], a product the same way, with its regular price.
 class SDealTile extends StatelessWidget {
   const SDealTile({
     required this.title,
     required this.price,
     this.discountPercent,
     this.imageUrl,
-    this.details,
-    this.hot = false,
+    this.stock,
     this.bordered = false,
-    this.trailing,
     this.onTap,
     super.key,
   });
@@ -31,18 +28,13 @@ class SDealTile extends StatelessWidget {
   /// 50 for half price; null shows the photo alone.
   final int? discountPercent;
   final String? imageUrl;
-  final String? details;
 
-  /// Shows [details] in orange: almost gone, so orange in a list always
-  /// means something.
-  final bool hot;
+  /// Null for what isn't counted (unlimited offers, products).
+  final DealTileStock? stock;
 
   /// A card of its own, with a thin border, for a list of offers alone; a
   /// plain row among other things (a page's section).
   final bool bordered;
-
-  /// At the end of the title: a status badge.
-  final Widget? trailing;
   final VoidCallback? onTap;
 
   @override
@@ -53,10 +45,8 @@ class SDealTile extends StatelessWidget {
       price: price,
       discountPercent: discountPercent,
       imageUrl: imageUrl,
-      details: details,
-      hot: hot,
+      stock: stock,
       bordered: bordered,
-      trailing: trailing,
       onTap: onTap,
     ),
   );
